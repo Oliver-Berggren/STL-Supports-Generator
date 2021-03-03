@@ -13,9 +13,22 @@ scene.add( cube );
 
 camera.position.z = 5;
 
+var guiControls = new function() {
+    this.rotationX = 0.01;
+    this.rotationY = 0.01;
+    this.rotationZ = 0.01;
+}
+
+var datGUI = new dat.GUI();
+datGUI.add(guiControls, 'rotationX', 0, 1);
+datGUI.add(guiControls, 'rotationY', 0, 1);
+datGUI.add(guiControls, 'rotationZ', 0, 1);
+
 render();
 function render() {
-    cube.rotation.x += .1;
+    cube.rotation.x += guiControls.rotationX;
+    cube.rotation.y += guiControls.rotationY;
+    cube.rotation.z += guiControls.rotationZ;
     requestAnimationFrame(render);
     renderer.render(scene,camera);
 }
